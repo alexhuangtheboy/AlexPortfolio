@@ -38,7 +38,7 @@ export default function Home() {
     {
       company: "Real Messenger",
       role: "Data Engineer",
-      period: "Dec 2025 - Mar 2026",
+      period: "Dec 2025 - Present",
       location: "Hong Kong SAR",
       highlights: [
         "Developed Airflow pipelines for ETL workflows with MongoDB and PostgreSQL",
@@ -62,7 +62,7 @@ export default function Home() {
     {
       company: "Ames IT and Numeric Solutions",
       role: "Data Scientist",
-      period: "Mar 2023 - Aug 2024",
+      period: "Mar 2023 - Nov 2024",
       location: "Los Angeles, CA",
       highlights: [
         "Delivered training on end-to-end data science workflows and ML algorithms",
