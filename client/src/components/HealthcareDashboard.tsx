@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Activity, AlertCircle, Building2, CalendarRange, Loader2, Receipt, Stethoscope } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Bar, BarChart, CartesianGrid, Legend, Line, LineChart,
+  Bar, BarChart, CartesianGrid, ComposedChart, Legend, Line, LineChart,
   ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 
@@ -278,7 +278,7 @@ export default function HealthcareDashboard() {
             </div>
           ) : (
             <ResponsiveContainer width="100%" height={360}>
-              <BarChart data={trend}>
+              <ComposedChart data={trend}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#333333" />
                 <XAxis dataKey="label" stroke="#999999" minTickGap={24} />
                 <YAxis
@@ -311,7 +311,7 @@ export default function HealthcareDashboard() {
                   dot={false}
                   name="Transaction Amount"
                 />
-              </BarChart>
+              </ComposedChart>
             </ResponsiveContainer>
           )}
         </Card>
