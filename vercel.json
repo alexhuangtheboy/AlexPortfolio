@@ -1,18 +1,12 @@
 {
   "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm build",
-  "outputDirectory": "dist/public",
-  "routes": [
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/((?!api/|@vite/|client/|node_modules/|.*\\..*).*)",
-      "dest": "/"
+      "source": "/(.*)",
+      "destination": "/api/index.ts"
     }
   ]
 }
