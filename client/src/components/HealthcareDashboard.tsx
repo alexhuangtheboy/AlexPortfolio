@@ -290,8 +290,8 @@ export default function HealthcareDashboard() {
                   yAxisId="right"
                   orientation="right"
                   stroke="#999999"
-                  tickFormatter={(v) => `$${Number(v).toLocaleString()}`}
-                  label={{ value: "Transaction Amount", angle: 90, position: "insideRight", fill: "#999999" }}
+                  tickFormatter={(v) => `$${(Number(v) / 1000000).toFixed(0)}M`}
+                  label={{ value: "Transaction Amount (Millions)", angle: 90, position: "insideRight", fill: "#999999" }}
                 />
                 <Tooltip
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #333333", borderRadius: "12px" }}
