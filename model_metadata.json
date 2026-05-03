@@ -1,0 +1,45 @@
+{
+  "model_type": "XGBoost",
+  "features": [
+    "occupation",
+    "age",
+    "gender",
+    "education",
+    "years_of_experience",
+    "current_salary"
+  ],
+  "categorical_features": {
+    "occupation": [
+      "Business Analyst",
+      "Consultant",
+      "Data Engineer",
+      "Data Scientist",
+      "Designer",
+      "DevOps Engineer",
+      "Product Manager",
+      "Project Manager",
+      "Software Engineer"
+    ],
+    "gender": [
+      "Female",
+      "Male",
+      "Other"
+    ],
+    "education": [
+      "Bachelor",
+      "High School",
+      "Master",
+      "PhD"
+    ]
+  },
+  "performance": {
+    "train_rmse": 1805.4859456667061,
+    "test_rmse": 4157.443685728046,
+    "train_mae": 1381.7491455078125,
+    "test_mae": 2651.596435546875,
+    "train_r2": 0.9997523427009583,
+    "test_r2": 0.9985721111297607
+  },
+  "training_samples": 4000,
+  "test_samples": 1000
+}

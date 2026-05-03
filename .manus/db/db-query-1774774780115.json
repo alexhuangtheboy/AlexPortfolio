@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE `salary_predictions` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`occupation` varchar(100) NOT NULL,\n\t`age` int NOT NULL,\n\t`gender` varchar(20) NOT NULL,\n\t`education` varchar(100) NOT NULL,\n\t`yearsOfExperience` int NOT NULL,\n\t`currentSalary` int NOT NULL,\n\t`predictedSalary10Years` int NOT NULL,\n\t`confidenceScore` int NOT NULL,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n\tCONSTRAINT `salary_predictions_id` PRIMARY KEY(`id`)\n);\nALTER TABLE `salary_predictions` ADD CONSTRAINT `salary_predictions_userId_users_id_fk` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE no action ON UPDATE no action;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 44USGmqDnZsRZXm.root --database UTnMcuaBKfFrE5Wb4LZwfa --execute CREATE TABLE `salary_predictions` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`occupation` varchar(100) NOT NULL,\n\t`age` int NOT NULL,\n\t`gender` varchar(20) NOT NULL,\n\t`education` varchar(100) NOT NULL,\n\t`yearsOfExperience` int NOT NULL,\n\t`currentSalary` int NOT NULL,\n\t`predictedSalary10Years` int NOT NULL,\n\t`confidenceScore` int NOT NULL,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n\tCONSTRAINT `salary_predictions_id` PRIMARY KEY(`id`)\n);\nALTER TABLE `salary_predictions` ADD CONSTRAINT `salary_predictions_userId_users_id_fk` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE no action ON UPDATE no action;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 504
+}
