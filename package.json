@@ -5,8 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsc server/healthcareApi.ts --outDir dist/server --module ESNext --target ES2022 --moduleResolution bundler --esModuleInterop --skipLibCheck",
+    "build:client": "vite build",
+    "build:server": "tsc server/healthcareApi.ts --outDir dist/server --module ESNext --target ES2022 --moduleResolution bundler --esModuleInterop --skipLibCheck",
     "preview": "vite preview",
+    "test:local": "node local-test-server.js",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",

@@ -1,12 +1,16 @@
 {
   "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm build",
-  "outputDirectory": "dist",
+  "outputDirectory": "dist/public",
   "framework": null,
   "rewrites": [
     {
+      "source": "/api/healthcare/:path*",
+      "destination": "/api/healthcare.js"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/index.html"
     }
   ]
 }

@@ -71,12 +71,27 @@ function loadHealthcareData(): HealthcareRecord[] {
     return cachedData;
   }
 
-  const csvPath = path.resolve(__dirname, '..', 'modified_healthcare_dataset.csv');
+  // Try multiple possible paths for the CSV file
+  const possiblePaths = [
+    path.resolve(__dirname, '..', '..', 'modified_healthcare_dataset.csv'),
+    path.resolve(__dirname, '..', 'modified_healthcare_dataset.csv'),
+    path.resolve(process.cwd(), 'modified_healthcare_dataset.csv'),
+    path.resolve(process.cwd(), '..', 'modified_healthcare_dataset.csv'),
+  ];
 
-  if (!fs.existsSync(csvPath)) {
-    throw new Error(`Healthcare dataset not found at ${csvPath}`);
+  let csvPath = null;
+  for (const testPath of possiblePaths) {
+    if (fs.existsSync(testPath)) {
+      csvPath = testPath;
+      break;
+    }
   }
 
+  if (!csvPath) {
+    throw new Error(`Healthcare dataset not found. Tried paths: ${possiblePaths.join(', ')}`);
+  }
+
+  console.log(`Loading healthcare data from: ${csvPath}`);
   const csvContent = fs.readFileSync(csvPath, 'utf-8');
 
   const parseResult = Papa.parse<HealthcareRecord>(csvContent, {
@@ -99,6 +114,7 @@ function loadHealthcareData(): HealthcareRecord[] {
   }));
 
   cachedData = processedData;
+  console.log(`Loaded ${processedData.length} healthcare records`);
   return processedData;
 }
 
