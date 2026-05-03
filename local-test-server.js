@@ -16,7 +16,7 @@ try {
   console.error('✗ Failed to load healthcare API handler:', error.message);
 }
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const PUBLIC_DIR = resolve(__dirname, 'dist/public');
 
 // MIME types
@@ -116,6 +116,21 @@ const server = createServer((req, res) => {
     res.writeHead(501, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'API endpoint not implemented in local test' }));
     return;
+  }
+
+  // Handle test chart page
+  if (pathname === '/test-chart') {
+    const testChartPath = join(__dirname, 'test-chart.html');
+    if (existsSync(testChartPath)) {
+      try {
+        const content = readFileSync(testChartPath);
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(content);
+        return;
+      } catch (error) {
+        console.error('Error reading test-chart.html:', error);
+      }
+    }
   }
 
   // Handle static files

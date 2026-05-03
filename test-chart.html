@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Test</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            background: #242424;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h1 {
+            color: #9AC0CD;
+        }
+        .info {
+            background: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .success {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Healthcare Chart Test</h1>
+
+    <div class="info">
+        <h2>Chart Configuration:</h2>
+        <ul>
+            <li><strong>Patient Volume:</strong> Bar chart, teal color (#9AC0CD), left Y-axis</li>
+            <li><strong>Transaction Amount:</strong> Line chart, orange color (#FF6B35), right Y-axis</li>
+        </ul>
+    </div>
+
+    <div id="chart-test"></div>
+
+    <div class="info">
+        <h2>What to look for:</h2>
+        <ul>
+            <li>✅ Teal bars showing patient counts</li>
+            <li>✅ Orange line showing transaction amounts</li>
+            <li>✅ Left Y-axis with patient numbers</li>
+            <li>✅ Right Y-axis with dollar amounts</li>
+        </ul>
+    </div>
+
+    <div class="info success">
+        <strong>Test Status:</strong> If you see both teal bars AND an orange line, the chart is working correctly!
+    </div>
+
+    <script>
+        const { BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = Recharts;
+
+        // Sample data
+        const data = [
+            { label: "2019-05", patientCount: 686, transactionAmount: 14969552.73 },
+            { label: "2019-06", patientCount: 907, transactionAmount: 18491036.07 },
+            { label: "2019-07", patientCount: 957, transactionAmount: 21273143.24 },
+            { label: "2019-08", patientCount: 1001, transactionAmount: 21844047.66 },
+            { label: "2019-09", patientCount: 936, transactionAmount: 21031374.24 },
+            { label: "2019-10", patientCount: 1013, transactionAmount: 21027016.20 },
+            { label: "2019-11", patientCount: 959, transactionAmount: 20689690.84 },
+            { label: "2019-12", patientCount: 928, transactionAmount: 19521494.91 },
+        ];
+
+        function ChartTest() {
+            return React.createElement('div', { className: 'chart-container' },
+                React.createElement(ResponsiveContainer, { width: '100%', height: '100%' },
+                    React.createElement(BarChart, { data: data },
+                        React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#333333' }),
+                        React.createElement(XAxis, { dataKey: 'label', stroke: '#999999' }),
+                        React.createElement(YAxis, {
+                            yAxisId: 'left',
+                            stroke: '#999999',
+                            label: { value: 'Patient Count', angle: -90, position: 'insideLeft', fill: '#999999' }
+                        }),
+                        React.createElement(YAxis, {
+                            yAxisId: 'right',
+                            orientation: 'right',
+                            stroke: '#999999',
+                            tickFormatter: (value) => `$${value.toLocaleString()}`,
+                            label: { value: 'Transaction Amount', angle: 90, position: 'insideRight', fill: '#999999' }
+                        }),
+                        React.createElement(Tooltip, {
+                            contentStyle: { backgroundColor: '#18181b', border: '1px solid #333333', borderRadius: '12px' },
+                            formatter: (value, name) => [
+                                name === 'Transaction Amount' ? `$${value.toLocaleString()}` : value,
+                                name
+                            ]
+                        }),
+                        React.createElement(Legend),
+                        React.createElement(Bar, {
+                            yAxisId: 'left',
+                            dataKey: 'patientCount',
+                            fill: '#9AC0CD',
+                            name: 'Patient Volume'
+                        }),
+                        React.createElement(Line, {
+                            yAxisId: 'right',
+                            type: 'monotone',
+                            dataKey: 'transactionAmount',
+                            stroke: '#FF6B35',
+                            strokeWidth: 3,
+                            dot: false,
+                            name: 'Transaction Amount'
+                        })
+                    )
+                )
+            );
+        }
+
+        ReactDOM.render(React.createElement(ChartTest), document.getElementById('chart-test'));
+    </script>
+</body>
+</html>

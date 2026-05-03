@@ -306,7 +306,7 @@ export default function HealthcareDashboard() {
                   yAxisId="right"
                   type="monotone"
                   dataKey="transactionAmount"
-                  stroke="#00d9ff"
+                  stroke="#FF6B35"
                   strokeWidth={3}
                   dot={false}
                   name="Transaction Amount"
