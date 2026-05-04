@@ -291,25 +291,33 @@ export default function HealthcareDashboard() {
                   orientation="right"
                   stroke="#999999"
                   tickFormatter={(v) => `$${(Number(v) / 1000000).toFixed(0)}M`}
-                  label={{ value: "Transaction (Millions)", angle: 90, position: "insideRight", fill: "#999999" }}
+                  label={{
+                    value: "Transaction (M)",
+                    angle: 90,
+                    position: "insideRight",
+                    fill: "#999999",
+                    style: { fontSize: "12px", fontWeight: "normal" }
+                  }}
                 />
                 <Tooltip
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #333333", borderRadius: "12px" }}
-                  formatter={(value: number, name: string) => [
-                    name === "Transaction Amount" ? money(value) : value.toLocaleString(),
-                    name,
-                  ]}
+                  formatter={(value: number, name: string) => {
+                    if (name === "Transaction Amount") {
+                      return [money(value), name];
+                    }
+                    return [value.toLocaleString(), name];
+                  }}
                 />
                 <Legend />
                 <Bar yAxisId="left" dataKey="patientCount" fill="#9AC0CD" radius={[6, 6, 0, 0]} name="Patient Volume" />
                 <Line
                   yAxisId="right"
                   type="monotone"
-                  dataKey="transaction"
+                  dataKey="transactionAmount"
                   stroke="#FF6B35"
                   strokeWidth={3}
                   dot={false}
-                  name="Transaction"
+                  name="Transaction Amount"
                 />
               </ComposedChart>
             </ResponsiveContainer>
