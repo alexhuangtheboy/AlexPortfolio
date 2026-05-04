@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Mail, Github, Linkedin, ExternalLink, ChevronDown, Code2, Database, Cloud, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 /**
  * Design Philosophy: Modern Minimalist with Data Visualization
@@ -25,6 +26,7 @@ interface SkillCategory {
 }
 
 export default function Home() {
+  const { t } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
@@ -36,87 +38,87 @@ export default function Home() {
 
   const experiences: ExperienceItem[] = [
     {
-      company: "Real Messenger",
-      role: "Data Engineer",
+      company: t('experience.company.real_messenger'),
+      role: t('experience.role.data_engineer'),
       period: "Dec 2025 - Present",
-      location: "Hong Kong SAR",
+      location: t('experience.location.hong_kong'),
       highlights: [
-        "Developed Airflow pipelines for ETL workflows with MongoDB and PostgreSQL",
-        "Built high-concurrency Go microservice handling 50K+ daily requests (<200ms)",
-        "Architected recommendation engine with Neural Collaborative Filtering and ANN search",
-        "Designed analytics API suite powering dashboards for 200K+ agents"
+        t('experience.highlight.real_messenger_1'),
+        t('experience.highlight.real_messenger_2'),
+        t('experience.highlight.real_messenger_3'),
+        t('experience.highlight.real_messenger_4')
       ]
     },
     {
-      company: "SIMO",
-      role: "Data Analyst",
+      company: t('experience.company.simo'),
+      role: t('experience.role.data_analyst'),
       period: "Dec 2024 - Nov 2025",
-      location: "Shenzhen, China",
+      location: t('experience.location.shenzhen'),
       highlights: [
-        "Designed ETL pipelines in AWS Databricks reducing manual reporting by 95%",
-        "Developed interactive dashboards for telecom metrics visualization",
-        "Implemented LSTM forecasting pipeline with 6.3% MAPE globally",
-        "Packaged ML model as FastAPI service on AWS SageMaker"
+        t('experience.highlight.simo_1'),
+        t('experience.highlight.simo_2'),
+        t('experience.highlight.simo_3'),
+        t('experience.highlight.simo_4')
       ]
     },
     {
-      company: "Ames IT and Numeric Solutions",
-      role: "Data Scientist",
+      company: t('experience.company.ames_it'),
+      role: t('experience.role.data_scientist'),
       period: "Mar 2023 - Nov 2024",
-      location: "Los Angeles, CA",
+      location: t('experience.location.los_angeles'),
       highlights: [
-        "Delivered training on end-to-end data science workflows and ML algorithms",
-        "Taught SQL-based data engineering and model deployment with FastAPI",
-        "Developed real-world case studies for fraud detection and credit scoring",
-        "Guided students through supervised and unsupervised learning techniques"
+        t('experience.highlight.ames_it_1'),
+        t('experience.highlight.ames_it_2'),
+        t('experience.highlight.ames_it_3'),
+        t('experience.highlight.ames_it_4')
       ]
     },
     {
-      company: "UCLA Health",
-      role: "Business Intelligence Analyst II",
+      company: t('experience.company.ucla_health'),
+      role: t('experience.role.bi_analyst'),
       period: "Jan 2022 - Mar 2023",
-      location: "Los Angeles, CA",
+      location: t('experience.location.los_angeles'),
       highlights: [
-        "Analyzed patient readmission data, decreased readmission rate by 5%",
-        "Designed interactive dashboards for key metrics (Volume, Mortality, Length of Stay)",
-        "Built NLP models for text mining, improved sepsis classification accuracy by 12.6%",
-        "Developed ensemble learning models with 0.95 AUC for early sepsis prediction"
+        t('experience.highlight.ucla_health_1'),
+        t('experience.highlight.ucla_health_2'),
+        t('experience.highlight.ucla_health_3'),
+        t('experience.highlight.ucla_health_4')
       ]
     },
     {
-      company: "Warner Bros",
-      role: "Business Analyst",
+      company: t('experience.company.warner_bros'),
+      role: t('experience.role.business_analyst'),
       period: "Jan 2019 - Dec 2020",
-      location: "Los Angeles, CA",
+      location: t('experience.location.los_angeles'),
       highlights: [
-        "Developed an automated end-to-end ETL pipeline using Databricks to migrate legacy CSV localization data into a centralized database",
-        "Designed and implemented a scalable star schema for localized talent metadata",
-        "Built interactive dashboards for localized talent data visualization and reporting",
-        "Developed XGBoost model in Python to forecast film box office, translating data insights into recommendations for movie release strategies"
+        t('experience.highlight.warner_bros_1'),
+        t('experience.highlight.warner_bros_2'),
+        t('experience.highlight.warner_bros_3'),
+        t('experience.highlight.warner_bros_4')
       ]
     }
   ];
 
   const skillCategories: SkillCategory[] = [
     {
-      name: "Programming",
+      name: t('skills.programming'),
       icon: <Code2 className="w-5 h-5" />,
-      skills: ["Python", "SQL", "R", "Golang", "JavaScript/TypeScript"]
+      skills: [t('skill.python'), t('skill.sql'), t('skill.r'), t('skill.golang'), t('skill.javascript')]
     },
     {
-      name: "Data & ETL",
+      name: t('skills.data_etl'),
       icon: <Database className="w-5 h-5" />,
-      skills: ["Apache Spark", "Apache Hadoop", "Airflow", "Databricks", "PostgreSQL", "MongoDB", "MySQL"]
+      skills: [t('skill.apache_spark'), t('skill.apache_hadoop'), t('skill.airflow'), t('skill.databricks'), t('skill.postgresql'), t('skill.mongodb'), t('skill.mysql')]
     },
     {
-      name: "Cloud & DevOps",
+      name: t('skills.cloud_devops'),
       icon: <Cloud className="w-5 h-5" />,
-      skills: ["AWS", "Kubernetes", "Docker", "Git", "CI/CD"]
+      skills: [t('skill.aws'), t('skill.kubernetes'), t('skill.docker'), t('skill.git'), t('skill.cicd')]
     },
     {
-      name: "ML & Analytics",
+      name: t('skills.ml_analytics'),
       icon: <Zap className="w-5 h-5" />,
-      skills: ["FastAPI", "TensorFlow", "LangChain", "Tableau", "Data Visualization"]
+      skills: [t('skill.fastapi'), t('skill.tensorflow'), t('skill.langchain'), t('skill.tableau'), t('skill.data_visualization')]
     }
   ];
 
@@ -127,12 +129,12 @@ export default function Home() {
         <div className="container flex items-center justify-between h-16">
           <div className="font-mono font-bold text-xl text-accent">AH</div>
           <div className="flex items-center gap-8">
-            <a href="#experience" className="text-sm hover:text-accent transition-colors">Experience</a>
-            <a href="#skills" className="text-sm hover:text-accent transition-colors">Skills</a>
-            <a href="#education" className="text-sm hover:text-accent transition-colors">Education</a>
-            <a href="/dashboard" className="text-sm hover:text-accent transition-colors">Dashboard</a>
-            <a href="/salary-predictor" className="text-sm hover:text-accent transition-colors">ML Predictor</a>
-            <a href="#contact" className="text-sm hover:text-accent transition-colors">Contact</a>
+            <a href="#experience" className="text-sm hover:text-accent transition-colors">{t('nav.experience')}</a>
+            <a href="#skills" className="text-sm hover:text-accent transition-colors">{t('nav.skills')}</a>
+            <a href="#education" className="text-sm hover:text-accent transition-colors">{t('nav.education')}</a>
+            <a href="/dashboard" className="text-sm hover:text-accent transition-colors">{t('nav.dashboard')}</a>
+            <a href="/salary-predictor" className="text-sm hover:text-accent transition-colors">{t('nav.predictor')}</a>
+            <a href="#contact" className="text-sm hover:text-accent transition-colors">{t('nav.contact')}</a>
           </div>
         </div>
       </nav>
@@ -155,11 +157,11 @@ export default function Home() {
             <div className="space-y-2">
               <p className="text-accent font-mono text-sm font-semibold tracking-widest">WELCOME TO MY PORTFOLIO</p>
               <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-                Alex Huang
+                {t('hero.name')}
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Data Engineer & Data Scientist with 5+ years of experience building scalable ETL pipelines, ML systems, and analytics platforms for Fortune 500 companies and innovative startups.
+              {t('hero.subtitle')}
             </p>
             <div className="flex items-center gap-4 pt-4">
               <a
@@ -168,14 +170,14 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-2.5 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
               >
-                View My Work
+                {t('hero.view_work')}
               </a>
               <a
                 href="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/AlexHuang_Resume_99dc4573.pdf"
                 download="AlexHuang_Resume.pdf"
                 className="inline-flex items-center justify-center px-6 py-2.5 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
               >
-                Download Resume
+                {t('contact.resume')}
               </a>
             </div>
           </div>
@@ -191,8 +193,8 @@ export default function Home() {
       <section id="experience" className="py-24 bg-card/50">
         <div className="container max-w-5xl">
           <div className="mb-16">
-            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">PROFESSIONAL JOURNEY</p>
-            <h2 className="text-5xl font-bold">Experience</h2>
+            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.professional_journey')}</p>
+            <h2 className="text-5xl font-bold">{t('experience.title')}</h2>
             <div className="w-16 h-1 bg-accent mt-4"></div>
           </div>
 
@@ -234,8 +236,8 @@ export default function Home() {
       <section id="skills" className="py-24">
         <div className="container max-w-5xl">
           <div className="mb-16">
-            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">TECHNICAL EXPERTISE</p>
-            <h2 className="text-5xl font-bold">Skills & Tools</h2>
+            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.technical_expertise')}</p>
+            <h2 className="text-5xl font-bold">{t('skills.tools')}</h2>
             <div className="w-16 h-1 bg-accent mt-4"></div>
           </div>
 
@@ -278,7 +280,7 @@ export default function Home() {
           <div className="mt-12 p-8 bg-card border border-border/50 rounded-lg">
             <h3 className="text-xl font-bold mb-4">Certifications</h3>
             <div className="flex flex-wrap gap-3">
-              {["Tableau Desktop Specialist", "AWS Certified Cloud Practitioner", "AWS Certified Data Engineer"].map(
+              {[t('skill.certification_tableau'), t('skill.certification_aws_practitioner'), t('skill.certification_aws_data_engineer')].map(
                 (cert, idx) => (
                   <span key={idx} className="px-4 py-2 bg-accent/5 border border-accent/20 rounded-lg text-sm">
                     {cert}
@@ -294,8 +296,8 @@ export default function Home() {
       <section id="education" className="py-24 bg-card/50">
         <div className="container max-w-5xl">
           <div className="mb-16">
-            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">ACADEMIC BACKGROUND</p>
-            <h2 className="text-5xl font-bold">Education</h2>
+            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.academic_background')}</p>
+            <h2 className="text-5xl font-bold">{t('education.title')}</h2>
             <div className="w-16 h-1 bg-accent mt-4"></div>
           </div>
 
@@ -303,22 +305,22 @@ export default function Home() {
             <Card className="bg-background border-border/50 p-8">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-accent">Master of Science in Business Analytics</h3>
-                  <p className="text-lg text-foreground font-semibold">University of Rochester</p>
-                  <p className="text-sm text-muted-foreground">STEM-Certified Program | Meliora Scholarship Recipient</p>
+                  <h3 className="text-2xl font-bold text-accent">{t('education.rochester_degree')}</h3>
+                  <p className="text-lg text-foreground font-semibold">{t('education.rochester_university')}</p>
+                  <p className="text-sm text-muted-foreground">{t('education.rochester_details')}</p>
                 </div>
-                <p className="text-sm text-muted-foreground font-mono whitespace-nowrap">December 2021</p>
+                <p className="text-sm text-muted-foreground font-mono whitespace-nowrap">{t('education.rochester_period')}</p>
               </div>
             </Card>
 
             <Card className="bg-background border-border/50 p-8">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-accent">Bachelor of Science in Business Administration</h3>
-                  <p className="text-lg text-foreground font-semibold">University of Southern California</p>
-                  <p className="text-sm text-muted-foreground">Minor in Mathematical Finance</p>
+                  <h3 className="text-2xl font-bold text-accent">{t('education.usc_degree')}</h3>
+                  <p className="text-lg text-foreground font-semibold">{t('education.usc_university')}</p>
+                  <p className="text-sm text-muted-foreground">{t('education.usc_details')}</p>
                 </div>
-                <p className="text-sm text-muted-foreground font-mono whitespace-nowrap">May 2019</p>
+                <p className="text-sm text-muted-foreground font-mono whitespace-nowrap">{t('education.usc_period')}</p>
               </div>
             </Card>
           </div>
@@ -336,8 +338,8 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent flex items-center">
               <div className="pl-8">
-                <h3 className="text-3xl font-bold text-accent mb-2">Modern Tech Stack</h3>
-                <p className="text-foreground/80">Proficient in cutting-edge data engineering and ML technologies</p>
+                <h3 className="text-3xl font-bold text-accent mb-2">{t('skill.tech_stack_title')}</h3>
+                <p className="text-foreground/80">{t('skill.tech_stack_description')}</p>
               </div>
             </div>
           </div>
@@ -348,10 +350,10 @@ export default function Home() {
       <section id="contact" className="py-24 bg-card/50">
         <div className="container max-w-4xl text-center">
           <div className="mb-12">
-            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">GET IN TOUCH</p>
-            <h2 className="text-5xl font-bold mb-4">Let's Connect</h2>
+            <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.get_in_touch')}</p>
+            <h2 className="text-5xl font-bold mb-4">{t('contact.subtitle')}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+              {t('contact.description')}
             </p>
           </div>
 
@@ -361,7 +363,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
             >
               <Mail className="w-5 h-5" />
-              Email Me
+              {t('contact.email')}
             </a>
             <a
               href="https://linkedin.com"
@@ -370,7 +372,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
             >
               <Linkedin className="w-5 h-5" />
-              LinkedIn
+              {t('contact.linkedin')}
             </a>
             <a
               href="https://github.com/alexhuangtheboy"
@@ -379,7 +381,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
             >
               <Github className="w-5 h-5" />
-              GitHub
+              {t('contact.github')}
             </a>
             <a
               href="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/AlexHuang_Resume_99dc4573.pdf"
@@ -387,13 +389,13 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
             >
               <ExternalLink className="w-5 h-5" />
-              Download Resume
+              {t('contact.resume')}
             </a>
           </div>
 
           <div className="p-8 bg-background border border-border/50 rounded-xl">
-            <p className="text-foreground/80 mb-4">📍 Based in Hong Kong SAR | Authorized to work in HK with TTPS</p>
-            <p className="text-foreground/80">📞 +852-6467-0968</p>
+            <p className="text-foreground/80 mb-4">{t('contact.location')}</p>
+            <p className="text-foreground/80">{t('contact.phone')}</p>
           </div>
         </div>
       </section>
@@ -403,17 +405,17 @@ export default function Home() {
         <div className="container max-w-5xl">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <p className="text-muted-foreground text-sm">
-              © 2026 Alex Huang. All rights reserved.
+              {t('footer.copyright')}
             </p>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
               <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">
-                Privacy
+                {t('footer.privacy')}
               </a>
               <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">
-                Terms
+                {t('contact.terms')}
               </a>
               <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">
-                Sitemap
+                {t('contact.sitemap')}
               </a>
             </div>
           </div>

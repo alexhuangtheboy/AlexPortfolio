@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, AlertCircle, Building2, CalendarRange, Loader2, Receipt, Stethoscope } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Bar, BarChart, CartesianGrid, ComposedChart, Legend, Line, LineChart,
   ResponsiveContainer, Tooltip, XAxis, YAxis,
@@ -102,6 +103,7 @@ function buildQuery(filters: Filters, granularity?: Granularity): string {
 // Main component
 // ---------------------------------------------------------------------------
 export default function HealthcareDashboard() {
+  const { t } = useLanguage();
   const [options, setOptions] = useState<FilterOptions>(EMPTY_OPTIONS);
   const [kpi, setKpi] = useState<KpiData>(EMPTY_KPI);
   const [trend, setTrend] = useState<TrendPoint[]>([]);
@@ -200,7 +202,7 @@ export default function HealthcareDashboard() {
       <div className="flex items-center justify-center h-64">
         <div className="text-center space-y-3">
           <Loader2 className="w-8 h-8 animate-spin text-[#9AC0CD] mx-auto" />
-          <p className="text-muted-foreground text-sm">Loading healthcare data...</p>
+          <p className="text-muted-foreground text-sm">{t('loading.healthcare')}</p>
         </div>
       </div>
     );
@@ -216,7 +218,7 @@ export default function HealthcareDashboard() {
             onClick={() => fetchData(filters, granularity)}
             className="text-[#9AC0CD] text-sm underline hover:no-underline"
           >
-            Retry
+            {t('error.retry')}
           </button>
         </div>
       </div>
@@ -224,12 +226,12 @@ export default function HealthcareDashboard() {
   }
 
   const selectDefs: { key: keyof Filters; label: string; values: string[] }[] = [
-    { key: "hospital", label: "Hospital", values: options.hospitals },
-    { key: "admissionType", label: "Admission Type", values: options.admissionTypes },
-    { key: "gender", label: "Gender", values: options.genders },
-    { key: "insurance", label: "Insurance Provider", values: options.insuranceProviders },
-    { key: "medication", label: "Medication", values: options.medications },
-    { key: "testResults", label: "Test Results", values: options.testResults },
+    { key: "hospital", label: t('dashboard.filters.hospital'), values: options.hospitals },
+    { key: "admissionType", label: t('dashboard.filters.admission_type'), values: options.admissionTypes },
+    { key: "gender", label: t('dashboard.filters.gender'), values: options.genders },
+    { key: "insurance", label: t('dashboard.filters.insurance'), values: options.insuranceProviders },
+    { key: "medication", label: t('dashboard.filters.medication'), values: options.medications },
+    { key: "testResults", label: t('dashboard.filters.test_results'), values: options.testResults },
   ];
 
   // ---------------------------------------------------------------------------
@@ -242,11 +244,11 @@ export default function HealthcareDashboard() {
         {/* KPI Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
-            { title: "Patient Volume", value: kpi.patientVolume.toLocaleString(), icon: <Activity className="w-5 h-5" /> },
-            { title: "Total Billing", value: compactMoney(kpi.totalBillingAmount), icon: <Receipt className="w-5 h-5" /> },
-            { title: "Avg Length of Stay", value: `${kpi.avgLengthOfStay} days`, icon: <CalendarRange className="w-5 h-5" /> },
-            { title: "Doctor Volume", value: kpi.doctorVolume.toLocaleString(), icon: <Stethoscope className="w-5 h-5" /> },
-            { title: "Total Hospitals", value: kpi.totalHospitals.toLocaleString(), icon: <Building2 className="w-5 h-5" /> },
+            { title: t('dashboard.kpi.patient_volume'), value: kpi.patientVolume.toLocaleString(), icon: <Activity className="w-5 h-5" /> },
+            { title: t('dashboard.kpi.total_billing'), value: compactMoney(kpi.totalBillingAmount), icon: <Receipt className="w-5 h-5" /> },
+            { title: t('dashboard.kpi.avg_stay'), value: `${kpi.avgLengthOfStay} ${t('dashboard.chart.days')}`, icon: <CalendarRange className="w-5 h-5" /> },
+            { title: t('dashboard.kpi.doctor_volume'), value: kpi.doctorVolume.toLocaleString(), icon: <Stethoscope className="w-5 h-5" /> },
+            { title: t('dashboard.kpi.total_hospitals'), value: kpi.totalHospitals.toLocaleString(), icon: <Building2 className="w-5 h-5" /> },
           ].map((m) => (
             <Card key={m.title} className="border-border/50 bg-card p-5">
               <div className="mb-4 flex items-center justify-between">
@@ -263,9 +265,9 @@ export default function HealthcareDashboard() {
         {/* Patient Volume & Transaction Amount Chart */}
         <Card className="border-border/50 bg-card p-6">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold">Patient Volume &amp; Transaction Amount</h2>
+            <h2 className="text-2xl font-bold">{t('dashboard.chart.patient_transaction')}</h2>
             <p className="text-sm text-muted-foreground">
-              Patient count on the left axis, billing amount on the right axis, grouped by date of admission.
+              {t('dashboard.chart.patient_transaction_desc')}
             </p>
           </div>
           {dataLoading ? (
@@ -284,7 +286,7 @@ export default function HealthcareDashboard() {
                 <YAxis
                   yAxisId="left"
                   stroke="#999999"
-                  label={{ value: "Patient Count", angle: -90, position: "insideLeft", fill: "#999999" }}
+                  label={{ value: t('dashboard.chart.y_axis.patient'), angle: -90, position: "insideLeft", fill: "#999999" }}
                 />
                 <YAxis
                   yAxisId="right"
@@ -292,7 +294,7 @@ export default function HealthcareDashboard() {
                   stroke="#999999"
                   tickFormatter={(v) => `$${(Number(v) / 1000000).toFixed(0)}M`}
                   label={{
-                    value: "Transaction (M)",
+                    value: t('dashboard.chart.y_axis.transaction'),
                     angle: 90,
                     position: "insideRight",
                     fill: "#999999",
@@ -302,14 +304,14 @@ export default function HealthcareDashboard() {
                 <Tooltip
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #333333", borderRadius: "12px" }}
                   formatter={(value: number, name: string) => {
-                    if (name === "Transaction Amount") {
+                    if (name === t('dashboard.chart.transaction_amount')) {
                       return [money(value), name];
                     }
                     return [value.toLocaleString(), name];
                   }}
                 />
                 <Legend />
-                <Bar yAxisId="left" dataKey="patientCount" fill="#9AC0CD" radius={[6, 6, 0, 0]} name="Patient Volume" />
+                <Bar yAxisId="left" dataKey="patientCount" fill="#9AC0CD" radius={[6, 6, 0, 0]} name={t('dashboard.chart.patient_volume')} />
                 <Line
                   yAxisId="right"
                   type="monotone"
@@ -317,7 +319,7 @@ export default function HealthcareDashboard() {
                   stroke="#FF6B35"
                   strokeWidth={3}
                   dot={false}
-                  name="Transaction Amount"
+                  name={t('dashboard.chart.transaction_amount')}
                 />
               </ComposedChart>
             </ResponsiveContainer>
@@ -327,8 +329,8 @@ export default function HealthcareDashboard() {
         {/* Length of Stay Chart */}
         <Card className="border-border/50 bg-card p-6">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold">Length of Stay Over Time</h2>
-            <p className="text-sm text-muted-foreground">Average length of stay by date of admission.</p>
+            <h2 className="text-2xl font-bold">{t('dashboard.chart.length_stay')}</h2>
+            <p className="text-sm text-muted-foreground">{t('dashboard.chart.length_stay_desc')}</p>
           </div>
           {dataLoading ? (
             <div className="flex items-center justify-center h-64">
@@ -345,11 +347,11 @@ export default function HealthcareDashboard() {
                 <XAxis dataKey="label" stroke="#999999" minTickGap={24} />
                 <YAxis
                   stroke="#999999"
-                  label={{ value: "Avg Length of Stay", angle: -90, position: "insideLeft", fill: "#999999" }}
+                  label={{ value: t('dashboard.chart.y_axis.stay'), angle: -90, position: "insideLeft", fill: "#999999" }}
                 />
                 <Tooltip
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #333333", borderRadius: "12px" }}
-                  formatter={(value: number) => [`${value.toFixed(1)} days`, "Average Length of Stay"]}
+                  formatter={(value: number) => [`${value.toFixed(1)} ${t('dashboard.chart.days')}`, t('dashboard.chart.length_of_stay')]}
                 />
                 <Line
                   type="monotone"
@@ -357,7 +359,7 @@ export default function HealthcareDashboard() {
                   stroke="#9AC0CD"
                   strokeWidth={3}
                   dot={false}
-                  name="Length of Stay"
+                  name={t('dashboard.chart.length_of_stay')}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -369,29 +371,29 @@ export default function HealthcareDashboard() {
       <Card className="border-border/50 bg-card p-6 h-fit xl:sticky xl:top-24">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold">Parameters &amp; Filters</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Granularity, date range, and healthcare filters.</p>
+            <h2 className="text-2xl font-bold">{t('dashboard.filters.title')}</h2>
+            <p className="mt-1 text-sm text-muted-foreground">{t('dashboard.filters.desc')}</p>
           </div>
 
           <div className="space-y-2">
-            <Label>Date Granularity</Label>
+            <Label>{t('dashboard.filters.granularity')}</Label>
             <Select value={granularity} onValueChange={(v: Granularity) => setGranularity(v)}>
               <SelectTrigger className={filterClass}>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="daily">Daily</SelectItem>
-                <SelectItem value="weekly">Weekly</SelectItem>
-                <SelectItem value="monthly">Monthly</SelectItem>
-                <SelectItem value="quarterly">Quarterly</SelectItem>
-                <SelectItem value="yearly">Yearly</SelectItem>
+                <SelectItem value="daily">{t('dashboard.granularity.daily')}</SelectItem>
+                <SelectItem value="weekly">{t('dashboard.granularity.weekly')}</SelectItem>
+                <SelectItem value="monthly">{t('dashboard.granularity.monthly')}</SelectItem>
+                <SelectItem value="quarterly">{t('dashboard.granularity.quarterly')}</SelectItem>
+                <SelectItem value="yearly">{t('dashboard.granularity.yearly')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">
-              <Label>Date From</Label>
+              <Label>{t('dashboard.filters.date_from')}</Label>
               <Input
                 type="date"
                 value={filters.startDate}
@@ -401,7 +403,7 @@ export default function HealthcareDashboard() {
               />
             </div>
             <div className="space-y-2">
-              <Label>Date To</Label>
+              <Label>{t('dashboard.filters.date_to')}</Label>
               <Input
                 type="date"
                 value={filters.endDate}
@@ -414,7 +416,7 @@ export default function HealthcareDashboard() {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">
-              <Label>Age Min</Label>
+              <Label>{t('dashboard.filters.age_min')}</Label>
               <Input
                 type="number"
                 value={filters.minAge}
@@ -425,7 +427,7 @@ export default function HealthcareDashboard() {
               />
             </div>
             <div className="space-y-2">
-              <Label>Age Max</Label>
+              <Label>{t('dashboard.filters.age_max')}</Label>
               <Input
                 type="number"
                 value={filters.maxAge}
@@ -445,7 +447,7 @@ export default function HealthcareDashboard() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="all">{t('dashboard.filters.all')}</SelectItem>
                   {f.values.map((v) => (
                     <SelectItem key={v} value={v}>
                       {v}

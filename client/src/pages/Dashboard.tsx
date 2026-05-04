@@ -3,6 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { TrendingUp, Users, Database, Zap, Clock, Target } from "lucide-react";
 import { lazy, Suspense, useEffect, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const loadHealthcareDashboard = () => import("@/components/HealthcareDashboard");
 const HealthcareDashboard = lazy(loadHealthcareDashboard);
@@ -28,6 +29,8 @@ interface MetricCard {
 type DashboardView = "performance" | "healthcare";
 
 function PerformanceDashboardView() {
+  const { t } = useLanguage();
+
   const performanceMetrics = [
     { name: "2023", etl: 45, ml: 38, analytics: 52 },
     { name: "2024", etl: 62, ml: 58, analytics: 71 },
@@ -50,12 +53,12 @@ function PerformanceDashboardView() {
   ];
 
   const metrics: MetricCard[] = [
-    { title: "Daily Requests Handled", value: "50K+", subtitle: "Peak throughput achieved", icon: <Zap className="w-6 h-6" />, color: "#00d9ff" },
-    { title: "Model Accuracy", value: "95%", subtitle: "AUC score for sepsis prediction", icon: <Target className="w-6 h-6" />, color: "#00b8cc" },
-    { title: "Response Time", value: "<100ms", subtitle: "Average API latency", icon: <Clock className="w-6 h-6" />, color: "#0099aa" },
-    { title: "Data Sources", value: "20+", subtitle: "Integrated databases & APIs", icon: <Database className="w-6 h-6" />, color: "#007a88" },
-    { title: "Team Size", value: "200K+", subtitle: "Agents served by analytics", icon: <Users className="w-6 h-6" />, color: "#005b66" },
-    { title: "Cost Reduction", value: "25%", subtitle: "Monthly savings achieved", icon: <TrendingUp className="w-6 h-6" />, color: "#00d9ff" }
+    { title: t('dashboard.metric.daily_requests'), value: "50K+", subtitle: t('dashboard.metric.daily_requests_sub'), icon: <Zap className="w-6 h-6" />, color: "#00d9ff" },
+    { title: t('dashboard.metric.model_accuracy'), value: "95%", subtitle: t('dashboard.metric.model_accuracy_sub'), icon: <Target className="w-6 h-6" />, color: "#00b8cc" },
+    { title: t('dashboard.metric.response_time'), value: "<100ms", subtitle: t('dashboard.metric.response_time_sub'), icon: <Clock className="w-6 h-6" />, color: "#0099aa" },
+    { title: t('dashboard.metric.data_sources'), value: "20+", subtitle: t('dashboard.metric.data_sources_sub'), icon: <Database className="w-6 h-6" />, color: "#007a88" },
+    { title: t('dashboard.metric.team_size'), value: "200K+", subtitle: t('dashboard.metric.team_size_sub'), icon: <Users className="w-6 h-6" />, color: "#005b66" },
+    { title: t('dashboard.metric.cost_reduction'), value: "25%", subtitle: t('dashboard.metric.cost_reduction_sub'), icon: <TrendingUp className="w-6 h-6" />, color: "#00d9ff" }
   ];
 
   return (
@@ -163,13 +166,14 @@ function PerformanceDashboardView() {
 }
 
 function HealthcareDashboardFallback() {
+  const { t } = useLanguage();
   return (
     <section className="py-16">
       <div className="container max-w-7xl">
         <Card className="border-border/50 bg-card p-8">
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Loading Healthcare Dashboard...</h2>
-            <p className="text-muted-foreground">Loading dashboard code and optimized healthcare dataset.</p>
+            <h2 className="text-2xl font-bold">{t('loading.healthcare')}</h2>
+            <p className="text-muted-foreground">{t('loading.dashboard')}</p>
           </div>
         </Card>
       </div>
@@ -178,6 +182,7 @@ function HealthcareDashboardFallback() {
 }
 
 export default function Dashboard() {
+  const { t } = useLanguage();
   const [view, setView] = useState<DashboardView>("healthcare");
 
   useEffect(() => {
@@ -219,12 +224,12 @@ export default function Dashboard() {
         <div className="container flex items-center justify-between h-16">
           <a href="/" className="font-mono font-bold text-xl text-accent">AH</a>
           <div className="flex items-center gap-8">
-            <a href="/#experience" className="text-sm hover:text-accent transition-colors">Experience</a>
-            <a href="/#skills" className="text-sm hover:text-accent transition-colors">Skills</a>
-            <a href="/#education" className="text-sm hover:text-accent transition-colors">Education</a>
-            <a href="/dashboard" className="text-sm text-accent font-semibold">Dashboard</a>
-            <a href="/salary-predictor" className="text-sm hover:text-accent transition-colors">ML Predictor</a>
-            <a href="/#contact" className="text-sm hover:text-accent transition-colors">Contact</a>
+            <a href="/#experience" className="text-sm hover:text-accent transition-colors">{t('nav.experience')}</a>
+            <a href="/#skills" className="text-sm hover:text-accent transition-colors">{t('nav.skills')}</a>
+            <a href="/#education" className="text-sm hover:text-accent transition-colors">{t('nav.education')}</a>
+            <a href="/dashboard" className="text-sm text-accent font-semibold">{t('nav.dashboard')}</a>
+            <a href="/salary-predictor" className="text-sm hover:text-accent transition-colors">{t('nav.predictor')}</a>
+            <a href="/#contact" className="text-sm hover:text-accent transition-colors">{t('nav.contact')}</a>
           </div>
         </div>
       </nav>
@@ -234,11 +239,11 @@ export default function Dashboard() {
           <div className="space-y-6">
             <div className="space-y-4">
               <p className="text-accent font-mono text-sm font-semibold tracking-widest">PROFESSIONAL ANALYTICS</p>
-              <h1 className="text-5xl font-bold">{view === "performance" ? "Performance Dashboard" : "Healthcare Dashboard"}</h1>
+              <h1 className="text-5xl font-bold">{view === "performance" ? t('dashboard.view.performance') : t('dashboard.view.healthcare')}</h1>
               <p className="text-lg text-muted-foreground max-w-3xl">
                 {view === "performance"
-                  ? "Key metrics and achievements from my professional experience in data engineering and data science"
-                  : "Interactive healthcare operations dashboard built from the uploaded modified healthcare dataset with KPI cards, time series analysis, granularity controls, and multi-dimensional filters."}
+                  ? t('dashboard.performance.desc')
+                  : t('dashboard.healthcare.desc')}
               </p>
             </div>
 
@@ -248,8 +253,8 @@ export default function Dashboard() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="performance">Performance Dashboard</SelectItem>
-                  <SelectItem value="healthcare">Healthcare Dashboard</SelectItem>
+                  <SelectItem value="performance">{t('dashboard.view.performance')}</SelectItem>
+                  <SelectItem value="healthcare">{t('dashboard.view.healthcare')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -262,10 +267,10 @@ export default function Dashboard() {
       <footer className="py-12 border-t border-border/50">
         <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <p className="text-muted-foreground text-sm">© 2026 Alex Huang. All rights reserved.</p>
+            <p className="text-muted-foreground text-sm">{t('footer.copyright')}</p>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
-              <a href="/" className="text-muted-foreground hover:text-accent transition-colors text-sm">Back to Portfolio</a>
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">Privacy</a>
+              <a href="/" className="text-muted-foreground hover:text-accent transition-colors text-sm">{t('footer.back')}</a>
+              <a href="#" className="text-muted-foreground hover:text-accent transition-colors text-sm">{t('footer.privacy')}</a>
             </div>
           </div>
         </div>
