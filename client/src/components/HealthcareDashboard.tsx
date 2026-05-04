@@ -291,7 +291,7 @@ export default function HealthcareDashboard() {
                   orientation="right"
                   stroke="#999999"
                   tickFormatter={(v) => `$${(Number(v) / 1000000).toFixed(0)}M`}
-                  label={{ value: "Transaction Amount (Millions)", angle: 90, position: "insideRight", fill: "#999999" }}
+                  label={{ value: "Transaction (Millions)", angle: 90, position: "insideRight", fill: "#999999" }}
                 />
                 <Tooltip
                   contentStyle={{ backgroundColor: "#18181b", border: "1px solid #333333", borderRadius: "12px" }}
@@ -305,11 +305,11 @@ export default function HealthcareDashboard() {
                 <Line
                   yAxisId="right"
                   type="monotone"
-                  dataKey="transactionAmount"
+                  dataKey="transaction"
                   stroke="#FF6B35"
                   strokeWidth={3}
                   dot={false}
-                  name="Transaction Amount"
+                  name="Transaction"
                 />
               </ComposedChart>
             </ResponsiveContainer>
