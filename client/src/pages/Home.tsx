@@ -82,6 +82,18 @@ export default function Home() {
         "Built NLP models for text mining, improved sepsis classification accuracy by 12.6%",
         "Developed ensemble learning models with 0.95 AUC for early sepsis prediction"
       ]
+    },
+    {
+      company: "Warner Bros",
+      role: "Business Analyst",
+      period: "Jan 2019 - Dec 2020",
+      location: "Los Angeles, CA",
+      highlights: [
+        "Developed an automated end-to-end ETL pipeline using Databricks to migrate legacy CSV locolization data into a centralized database",
+        "Designed and implemented a scalable star schema for localized talent metadata",
+        "Built interactive dashboards for localized talent data visualization and reporting",
+        "Developed XGBoost modeel in Python to forecast film box office, translating data insights into recommendations for movie releases strategies"
+      ]
     }
   ];
 
