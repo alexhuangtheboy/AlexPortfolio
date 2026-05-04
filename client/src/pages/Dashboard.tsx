@@ -178,6 +178,20 @@ function HealthcareDashboardFallback() {
 }
 
 export default function Dashboard() {
+  const [view, setView] = useState<DashboardView>("healthcare");
+
+  useEffect(() => {
+    // Fetch the healthcare data immediately on load
+    prefetchHealthcareExperience();
+  }, []); // All the idleCallback and timeout code is deleted!
+
+  const handleViewChange = (value: DashboardView) => {
+    if (value === "healthcare") {
+      prefetchHealthcareExperience();
+    }
+    setView(value);
+  };
+/*export default function Dashboard() {
   const [view, setView] = useState<DashboardView>("performance");
 
   useEffect(() => {
@@ -197,7 +211,7 @@ export default function Dashboard() {
       prefetchHealthcareExperience();
     }
     setView(value);
-  };
+  };*/
 
   return (
     <div className="min-h-screen bg-background text-foreground">

@@ -92,7 +92,7 @@ export default function Home() {
         "Developed an automated end-to-end ETL pipeline using Databricks to migrate legacy CSV localization data into a centralized database",
         "Designed and implemented a scalable star schema for localized talent metadata",
         "Built interactive dashboards for localized talent data visualization and reporting",
-        "Developed XGBoost modeel in Python to forecast film box office, translating data insights into recommendations for movie release strategies"
+        "Developed XGBoost model in Python to forecast film box office, translating data insights into recommendations for movie release strategies"
       ]
     }
   ];
