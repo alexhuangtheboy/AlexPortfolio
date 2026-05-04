@@ -89,10 +89,10 @@ export default function Home() {
       period: "Jan 2019 - Dec 2020",
       location: "Los Angeles, CA",
       highlights: [
-        "Developed an automated end-to-end ETL pipeline using Databricks to migrate legacy CSV locolization data into a centralized database",
+        "Developed an automated end-to-end ETL pipeline using Databricks to migrate legacy CSV localization data into a centralized database",
         "Designed and implemented a scalable star schema for localized talent metadata",
         "Built interactive dashboards for localized talent data visualization and reporting",
-        "Developed XGBoost modeel in Python to forecast film box office, translating data insights into recommendations for movie releases strategies"
+        "Developed XGBoost modeel in Python to forecast film box office, translating data insights into recommendations for movie release strategies"
       ]
     }
   ];
