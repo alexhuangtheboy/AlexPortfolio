@@ -162,7 +162,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl flex flex-col items-center animate-fade-in">
           <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-4">{t('hero.welcome')}</p>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] font-normal text-foreground font-[var(--font-display)]">
+          <h1 className="text-5xl sm:text-5xl md:text-5xl leading-[0.95] tracking-[-2.46px] font-normal text-foreground font-[var(--font-display)]">
             {t('hero.name')}
           </h1>
 
