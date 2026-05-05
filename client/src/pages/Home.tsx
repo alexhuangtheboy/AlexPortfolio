@@ -125,77 +125,87 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="container flex items-center justify-between h-16">
+      <nav className="fixed top-0 left-0 right-0 z-50 w-full">
+        <div className="flex flex-row justify-between items-center px-8 py-6 max-w-7xl mx-auto w-full">
           <div className="font-mono font-bold text-xl text-accent">AH</div>
-          <div className="flex items-center gap-8">
-            <a href="#experience" className="text-sm hover:text-accent transition-colors">{t('nav.experience')}</a>
-            <a href="#skills" className="text-sm hover:text-accent transition-colors">{t('nav.skills')}</a>
-            <a href="#education" className="text-sm hover:text-accent transition-colors">{t('nav.education')}</a>
-            <a href="/dashboard" className="text-sm hover:text-accent transition-colors">{t('nav.dashboard')}</a>
-            <a href="/salary-predictor" className="text-sm hover:text-accent transition-colors">{t('nav.predictor')}</a>
-            <a href="#contact" className="text-sm hover:text-accent transition-colors">{t('nav.contact')}</a>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#experience" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.experience')}</a>
+            <a href="#skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.skills')}</a>
+            <a href="#education" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.education')}</a>
+            <a href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.dashboard')}</a>
+            <a href="/salary-predictor" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.predictor')}</a>
+            <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.contact')}</a>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/hero-background-bnj7yiZcc8nDDSv4oEePvC.webp"
-            alt="Hero background"
-            className="w-full h-full object-cover"
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 pb-40 overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+            type="video/mp4"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background"></div>
-        </div>
+        </video>
+
+        {/* Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-0"></div>
 
         {/* Hero Content */}
-        <div className="container relative z-10 max-w-4xl">
-          <div className="space-y-6 animate-fade-in">
-            <div className="space-y-2">
-              <p className="text-accent font-mono text-sm font-semibold tracking-widest">WELCOME TO MY PORTFOLIO</p>
-              <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-                {t('hero.name')}
-              </h1>
-            </div>
-            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex items-center gap-4 pt-4">
-              <a
-                href="https://github.com/alexhuangtheboy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-2.5 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
-              >
-                {t('hero.view_work')}
-              </a>
-              <a
-                href="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/AlexHuang_Resume_99dc4573.pdf"
-                download="AlexHuang_Resume.pdf"
-                className="inline-flex items-center justify-center px-6 py-2.5 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
-              >
-                {t('contact.resume')}
-              </a>
-            </div>
+        <div className="relative z-10 max-w-7xl flex flex-col items-center animate-fade-in">
+          <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-4">{t('hero.welcome')}</p>
+
+          <h1 className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] font-normal text-foreground font-[var(--font-display)]">
+            {t('hero.name')}
+          </h1>
+
+          <p className="text-foreground text-xl sm:text-2xl mt-6 mb-2 font-[var(--font-display)]">
+            Where <em className="not-italic text-muted-foreground">dreams</em> rise <em className="not-italic text-muted-foreground">through the silence</em>.
+          </p>
+
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mt-8 leading-relaxed">
+            {t('hero.subtitle')}
+          </p>
+
+          <div className="flex items-center gap-4 pt-8">
+            <a
+              href="https://github.com/alexhuangtheboy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="liquid-glass rounded-full px-8 py-3 text-sm text-foreground hover:scale-[1.03] transition-transform font-semibold"
+            >
+              {t('hero.view_work')}
+            </a>
+            <a
+              href="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/AlexHuang_Resume_99dc4573.pdf"
+              download="AlexHuang_Resume.pdf"
+              className="liquid-glass rounded-full px-8 py-3 text-sm text-foreground hover:scale-[1.03] transition-transform font-semibold"
+            >
+              {t('contact.resume')}
+            </a>
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-accent" />
+          <ChevronDown className="w-6 h-6 text-foreground" />
         </div>
       </section>
 
       {/* Experience Section */}
       <section id="experience" className="py-24 bg-card/50">
         <div className="container max-w-5xl">
-          <div className="mb-16">
+          <div className="mb-16 text-center">
             <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.professional_journey')}</p>
             <h2 className="text-5xl font-bold">{t('experience.title')}</h2>
-            <div className="w-16 h-1 bg-accent mt-4"></div>
+            <div className="w-16 h-1 bg-accent mt-4 mx-auto"></div>
           </div>
 
           <div className="space-y-8">
@@ -235,10 +245,10 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="py-24">
         <div className="container max-w-5xl">
-          <div className="mb-16">
+          <div className="mb-16 text-center">
             <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.technical_expertise')}</p>
             <h2 className="text-5xl font-bold">{t('skills.tools')}</h2>
-            <div className="w-16 h-1 bg-accent mt-4"></div>
+            <div className="w-16 h-1 bg-accent mt-4 mx-auto"></div>
           </div>
 
           {/* Background Image */}
@@ -295,10 +305,10 @@ export default function Home() {
       {/* Education Section */}
       <section id="education" className="py-24 bg-card/50">
         <div className="container max-w-5xl">
-          <div className="mb-16">
+          <div className="mb-16 text-center">
             <p className="text-accent font-mono text-sm font-semibold tracking-widest mb-2">{t('section.academic_background')}</p>
             <h2 className="text-5xl font-bold">{t('education.title')}</h2>
-            <div className="w-16 h-1 bg-accent mt-4"></div>
+            <div className="w-16 h-1 bg-accent mt-4 mx-auto"></div>
           </div>
 
           <div className="space-y-6">

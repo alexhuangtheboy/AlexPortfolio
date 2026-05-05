@@ -310,6 +310,7 @@ export default function HealthcareDashboard() {
                     return [value.toLocaleString(), name];
                   }}
                 />
+                
                 <Legend />
                 <Bar yAxisId="left" dataKey="patientCount" fill="#9AC0CD" radius={[6, 6, 0, 0]} name={t('dashboard.chart.patient_volume')} />
                 <Line
