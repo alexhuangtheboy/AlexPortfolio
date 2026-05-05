@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Mail, Github, Linkedin, ExternalLink, ChevronDown, Code2, Database, Cloud, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 /**
  * Design Philosophy: Modern Minimalist with Data Visualization
@@ -126,16 +127,28 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 w-full">
-        <div className="flex flex-row justify-between items-center px-8 py-6 max-w-7xl mx-auto w-full">
-          <div className="font-mono font-bold text-xl text-accent">AH</div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#experience" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.experience')}</a>
-            <a href="#skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.skills')}</a>
-            <a href="#education" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.education')}</a>
-            <a href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.dashboard')}</a>
-            <a href="/salary-predictor" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.predictor')}</a>
-            <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">{t('nav.contact')}</a>
+        <div className="grid grid-cols-[auto_1fr_auto] items-center px-8 py-6 max-w-7xl mx-auto w-full">
+
+          {/* Left: Logo */}
+          <div className="flex items-center">
+            <div className="font-mono font-bold text-xl text-accent">AH</div>
           </div>
+
+          {/* Center: Navigation Links */}
+          <div className="hidden md:flex items-center justify-center gap-6">
+            <a href="#experience" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">{t('nav.experience')}</a>
+            <a href="#skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">{t('nav.skills')}</a>
+            <a href="#education" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">{t('nav.education')}</a>
+            <a href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">{t('nav.dashboard')}</a>
+            <a href="/salary-predictor" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">{t('nav.predictor')}</a>
+            <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">{t('nav.contact')}</a>
+          </div>
+
+          {/* Right: Language Switcher */}
+          <div className="flex items-center justify-end">
+            <LanguageSwitcher />
+          </div>
+
         </div>
       </nav>
 
