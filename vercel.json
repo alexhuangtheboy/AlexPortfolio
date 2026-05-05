@@ -5,6 +5,10 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/api/trpc/:path*",
+      "destination": "/api/trpc/[trpc].ts"
+    },
+    {
       "source": "/api/healthcare/:path*",
       "destination": "/api/healthcare.js"
     },
