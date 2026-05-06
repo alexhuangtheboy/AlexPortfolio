@@ -65,7 +65,7 @@ export default function Home() {
     {
       company: t('experience.company.ames_it'),
       role: t('experience.role.data_scientist'),
-      period: "Mar 2023 - Nov 2024",
+      period: "Mar 2023 - Aug 2024",
       location: t('experience.location.los_angeles'),
       highlights: [
         t('experience.highlight.ames_it_1'),
@@ -89,7 +89,7 @@ export default function Home() {
     {
       company: t('experience.company.warner_bros'),
       role: t('experience.role.business_analyst'),
-      period: "Jan 2019 - Dec 2020",
+      period: "May 2019 - May 2020",
       location: t('experience.location.los_angeles'),
       highlights: [
         t('experience.highlight.warner_bros_1'),
