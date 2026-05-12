@@ -90,9 +90,9 @@ export default function SalaryPredictor() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="container flex items-center justify-between h-16">
+        <div className="container grid grid-cols-[auto_1fr_auto] items-center h-16">
           <a href="/" className="font-mono font-bold text-xl text-accent">AH</a>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center gap-8">
             <a href="/#experience" className="text-sm hover:text-accent transition-colors">{t('nav.experience')}</a>
             <a href="/#skills" className="text-sm hover:text-accent transition-colors">{t('nav.skills')}</a>
             <a href="/#education" className="text-sm hover:text-accent transition-colors">{t('nav.education')}</a>
@@ -100,6 +100,7 @@ export default function SalaryPredictor() {
             <a href="/salary-predictor" className="text-sm text-accent font-semibold">{t('nav.predictor')}</a>
             <a href="/#contact" className="text-sm hover:text-accent transition-colors">{t('nav.contact')}</a>
           </div>
+          <div />
         </div>
       </nav>
 
