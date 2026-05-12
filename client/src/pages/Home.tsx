@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Mail, Github, Linkedin, ExternalLink, ChevronDown, Code2, Database, Cloud, Zap } from "lucide-react";
+import { Mail, Github, Linkedin, ChevronDown, Code2, Database, Cloud, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -65,7 +65,7 @@ export default function Home() {
     {
       company: t('experience.company.ames_it'),
       role: t('experience.role.data_scientist'),
-      period: "Mar 2023 - Aug 2024",
+      period: "Mar 2023 - Nov 2024",
       location: t('experience.location.los_angeles'),
       highlights: [
         t('experience.highlight.ames_it_1'),
@@ -89,7 +89,7 @@ export default function Home() {
     {
       company: t('experience.company.warner_bros'),
       role: t('experience.role.business_analyst'),
-      period: "May 2019 - May 2020",
+      period: "Jan 2019 - Dec 2020",
       location: t('experience.location.los_angeles'),
       highlights: [
         t('experience.highlight.warner_bros_1'),
@@ -187,7 +187,7 @@ export default function Home() {
             {t('hero.subtitle')}
           </p>
 
-          <div className="flex items-center gap-4 pt-8">
+          <div className="flex items-center justify-center pt-8">
             <a
               href="https://github.com/alexhuangtheboy"
               target="_blank"
@@ -195,13 +195,6 @@ export default function Home() {
               className="liquid-glass rounded-full px-8 py-3 text-sm text-foreground hover:scale-[1.03] transition-transform font-semibold"
             >
               {t('hero.view_work')}
-            </a>
-            <a
-              href="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/AlexHuang_Resume_99dc4573.pdf"
-              download="AlexHuang_Resume.pdf"
-              className="liquid-glass rounded-full px-8 py-3 text-sm text-foreground hover:scale-[1.03] transition-transform font-semibold"
-            >
-              {t('contact.resume')}
             </a>
           </div>
         </div>
@@ -405,14 +398,6 @@ export default function Home() {
             >
               <Github className="w-5 h-5" />
               {t('contact.github')}
-            </a>
-            <a
-              href="https://d2xsxph8kpxj0f.cloudfront.net/310519663281322185/UTnMcuaBKfFrE5Wb4LZwfa/AlexHuang_Resume_99dc4573.pdf"
-              download="AlexHuang_Resume.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-semibold"
-            >
-              <ExternalLink className="w-5 h-5" />
-              {t('contact.resume')}
             </a>
           </div>
 
